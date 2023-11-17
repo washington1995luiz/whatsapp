@@ -3,15 +3,11 @@ const qrcode = require('qrcode-terminal');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 const { chromium } = require("playwright-extra")
 const express = require('express')
-const bodyParser = require('body-parser')
 chromium.use(StealthPlugin())
 
 
 const PORT = 3333
 const app = express()
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({ type: 'application/json' }))
-
 async function requestSite(codeProduct) {
 
     const browser = await chromium.launch({ headless: true })
@@ -149,7 +145,7 @@ app.post("/connect", (req, res) => {
 (function connection() {
     try {
         const client = new Client({
-            authStrategy: new LocalAuth({ clientId: "session-deploy" })
+            authStrategy: new LocalAuth({ clientId: "session-pc" })
         })
         client.initialize()
 
